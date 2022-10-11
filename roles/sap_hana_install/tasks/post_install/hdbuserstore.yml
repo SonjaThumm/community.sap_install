@@ -1,7 +1,7 @@
 ---
 
 - name: SAP HANA Post Install - Create and Store Connection Info in hdbuserstore
-  ansible.builtin.shell: |
+  shell: |
       /usr/sap/{{ sap_hana_install_sid }}/SYS/exe/hdb/hdbuserstore \
       SET {{ sap_hana_install_hdbuserstore_key }} \
       {{ ansible_hostname }}:3{{ sap_hana_install_number }}13 \
@@ -16,6 +16,6 @@
   tags: sap_hana_install_store_connection_information
 
 - name: SAP HANA Post Install - Display the output of hdbuserstore
-  ansible.builtin.debug:
+  debug:
     var: __sap_hana_install_store_connection_information.stdout_lines
   tags: sap_hana_install_store_connection_information
