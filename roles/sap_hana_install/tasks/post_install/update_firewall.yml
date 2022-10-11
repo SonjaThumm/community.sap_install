@@ -2,7 +2,8 @@
 # This task requires the variable passed_port
 
 - name: Update Firewall - {{ passed_port }}/tcp
-  ansible.posix.firewalld:
+  #ansible.posix.firewalld:
+  firewalld:
     zone: public
     port: "{{ passed_port }}/tcp"
     permanent: yes
