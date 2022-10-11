@@ -1,7 +1,7 @@
 ---
 
 - name: SAP HANA Post Install - Set log_mode to overwrite
-  ansible.builtin.shell: |
+  shell: |
       LD_LIBRARY_PATH=/usr/sap/{{ sap_hana_install_sid }}/HDB{{ sap_hana_install_number }}/exe \
       /usr/sap/{{ sap_hana_install_sid }}/SYS/exe/hdb/hdbsql \
       -n '{{ ansible_hostname }}' \
@@ -24,6 +24,6 @@
   tags: sap_hana_install_set_log_mode
 
 - name: SAP HANA Post Install - Display the output of hdbsql
-  ansible.builtin.debug:
+  debug:
     var: __sap_hana_install_hdbsql_logmode.stdout_lines
   tags: sap_hana_install_set_log_mode
