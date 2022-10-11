@@ -1,20 +1,20 @@
 ---
 
 - name: SAP HANA Add Hosts - Fill new variable __sap_hana_install_addhosts_hosts
-  ansible.builtin.set_fact:
+  set_fact:
     __sap_hana_install_addhosts_hosts: "{{ __sap_hana_install_addhosts_hosts|default([]) + [ item.split(':')[0] ]  }}"
   with_items: "{{ sap_hana_install_addhosts.split(',') }}"
 
 - name: SAP HANA Add Hosts - Show the contents of __sap_hana_install_addhosts_hosts
-  ansible.builtin.debug:
+  debug:
     var: __sap_hana_install_addhosts_hosts
 
 - name: SAP HANA Add Hosts - Show the additional hosts to be added
-  ansible.builtin.debug:
+  debug:
     msg: "Additional hosts: '{{ __sap_hana_install_addhosts_hosts }}'"
 
 - name: SAP HANA Add Hosts - Make sure the additional hosts are not yet part of the exiting SAP HANA system - file checks
-  ansible.builtin.include_tasks: assert-addhosts-loop-block.yml
+  include_tasks: assert-addhosts-loop-block.yml
   loop: "{{ __sap_hana_install_addhosts_hosts }}"
   loop_control:
     loop_var: line_item
@@ -23,7 +23,7 @@
   block:
 
     - name: SAP HANA Add Hosts - Run 'hdblcm --list_systems'
-      ansible.builtin.shell: |
+      shell: |
         ./hdblcm --list_systems | awk '/\/hana\/shared\/{{ sap_hana_install_sid }}/{a=1}
           /hosts:/{if (a==1){
             gsub ("^\\s*hosts: ", "");print;a=0}
