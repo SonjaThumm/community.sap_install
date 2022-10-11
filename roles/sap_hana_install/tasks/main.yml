@@ -25,7 +25,8 @@
   tags: sap_hana_install_preinstall
 
 - name: SAP HANA existence checking
-  ansible.builtin.import_tasks: hana_exists.yml
+  #ansible.builtin.import_tasks: hana_exists.yml
+  import_tasks: hana_exists.yml
   when: sap_hana_install_new_system|d(true)
 
 - name: SAP HANA pre-install steps
