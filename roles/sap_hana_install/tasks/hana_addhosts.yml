@@ -34,11 +34,11 @@
       changed_when: no
 
     - name: SAP HANA Add Hosts - Show the output of hdblcm --list_systems
-      ansible.builtin.debug:
+      debug:
         var: __sap_hana_install_register_hdblcm_list_systems
 
     - name: SAP HANA Add Hosts - Assert that the additional hosts are not shown in hdblcm --list_systems
-      ansible.builtin.assert:
+      assert:
         that: "'{{ line_item }}' not in __sap_hana_install_register_hdblcm_list_systems.stdout"
         fail_msg:
           - "FAIL: Host '{{ line_item }}' is already part of system '{{ sap_hana_install_sid }}'"
@@ -78,7 +78,7 @@
   when: not ansible_check_mode
 
 - name: SAP HANA Add Hosts - Run 'hdblcm --list_systems' after the installation
-  ansible.builtin.shell: |
+  shell: |
       set -o pipefail && ./hdblcm --list_systems | awk '/\/hana\/shared\/{{ sap_hana_install_sid }}/{a=1}
       /version:/{if (a==1){
         gsub ("^\\s*version: ", "");printf ("version: %s; hosts: ", $NF)}
