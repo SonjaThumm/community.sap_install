@@ -47,6 +47,8 @@
   when: not ansible_check_mode
   ignore_errors: true
 - debug:
+    var=__sap_hana_install_register_hdblcm_install
+- debug:
     msg: "{{ __sap_hana_install_register_hdblcm_install }}"
 - debug:
     msg: "{{ __sap_hana_install_register_hdblcm_install.stdout }}"
