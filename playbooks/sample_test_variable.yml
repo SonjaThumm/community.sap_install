@@ -1,0 +1,7 @@
+- hosts: all
+  become: true
+
+  tasks:
+
+  - debug:
+      msg: "{{ sap_hana_install_sid }}"
