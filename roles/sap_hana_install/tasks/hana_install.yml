@@ -43,12 +43,10 @@
   register: __sap_hana_install_register_hdblcm_install
   args:
     chdir: "{{ __sap_hana_install_fact_hdblcm_path }}"
-  changed_when: "'SAP HANA Lifecycle Management' in __sap_hana_install_register_hdblcm_install.stdout"
+  changed_when: "'SAP HANA Lifecycle Management' in __sap_hana_install_register_hdblcm_install.msg"
   when: not ansible_check_mode
   ignore_errors: true
 - debug:
     var=__sap_hana_install_register_hdblcm_install
 - debug:
     msg: "{{ __sap_hana_install_register_hdblcm_install }}"
-- debug:
-    msg: "{{ __sap_hana_install_register_hdblcm_install.stdout }}"
