@@ -46,4 +46,4 @@
   #changed_when: "'SAP HANA Lifecycle Management' in __sap_hana_install_register_hdblcm_install.stdout"
   #when: not ansible_check_mode
 - debug:
-  msg: "{{ __sap_hana_install_hdblcm_command_line }}"
+    msg: "{{ __sap_hana_install_hdblcm_command_line }}"
