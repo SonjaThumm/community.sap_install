@@ -13,7 +13,7 @@
     - sap_hana_install_configure_firewall
     
 - debug:
-    msg: "{{ sap_hana_install_sid }}, system usage: {{ sap_hana_install_system_usage }} , restrict_max_mem: {{ sap_hana_install_restrict_max_mem }} "
+    msg: "{{ sap_hana_install_sid }}"
 
 - name: Fail if necessary variable 'sap_hana_install_sid' is not configured
   fail:
